@@ -1,0 +1,30 @@
+{% load blog_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>this is test page for use variables in page</h1>
+    <p>first name is : {{fname}}</p>
+    <p>last name is : {{lname}}</p>
+    <p>result of simple template tag is : {% hello %}</p>
+    <p>result of simple template tag with input is : {% dardo 8 %}</p>
+    <p>total post is : {% totalposts %}</p>
+    {% totalposts as tp %}
+    <h1>{{tp}}</h1>
+    {% allposts as t %}
+    {% for post in t %}
+    <p>{{post.counted_views}} for post .... {{post.content|snippet:10}}</p>
+    {% endfor %}
+    <h1>this is for session 7-4</h1>
+    {% popularposts %}
+
+</body>
+
+</html>
