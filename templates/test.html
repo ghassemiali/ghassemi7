@@ -10,21 +10,18 @@
 </head>
 
 <body>
-    <h1>this is test page for use variables in page</h1>
-    <p>first name is : {{fname}}</p>
-    <p>last name is : {{lname}}</p>
-    <p>result of simple template tag is : {% hello %}</p>
-    <p>result of simple template tag with input is : {% dardo 8 %}</p>
-    <p>total post is : {% totalposts %}</p>
-    {% totalposts as tp %}
-    <h1>{{tp}}</h1>
-    {% allposts as t %}
-    {% for post in t %}
-    <p>{{post.counted_views}} for post .... {{post.content|snippet:10}}</p>
-    {% endfor %}
-    <h1>this is for session 7-4</h1>
-    {% popularposts %}
-
+    <form action="{% url 'website:test' %}" method="post">
+        {% csrf_token %}
+        <label>name:</label>
+        <input name="name" type="text"><br>
+        <label>email:</label>
+        <input name="email" type="email"><br>
+        <label>subject:</label>
+        <input name="subject" type="text"><br>
+        <label>message:</label>
+        <input name="message" type="text"><br>
+        <button type='submit'>submit</button> 
+    </form>
 </body>
 
 </html>

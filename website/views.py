@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from blog.models import Post, Tag
+from website.models import Contact
 
 def home_view(request):
     return render(request, 'website/index.html')
@@ -14,5 +15,15 @@ def elements_view(request):
     return render(request, 'website/elements.html')
 
 def test_view(request):
-    temp_dict = {'fname': 'Ali', 'lname': 'Ghassemi'}
-    return render(request, 'test.html', temp_dict)
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        c = Contact()
+        c.name = name
+        c.email = email
+        c.subject = subject
+        c.message = message
+        c.save()
+    return render(request, 'test.html', {})
