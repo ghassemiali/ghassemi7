@@ -16,7 +16,12 @@ def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            form.save()
+            c = Contact()
+            c.name = 'Anonymous'
+            c.email = form.cleaned_data['email']
+            c.subject = form.cleaned_data['subject']
+            c.message = form.cleaned_data['message']
+            c.save()
             messages.add_message(request, messages.SUCCESS, "your ticket submittet successfully")
         else:
             print('the data is not valid')

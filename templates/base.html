@@ -18,6 +18,18 @@
 	<!-- Site Title -->
 	<title>Travel</title>
 
+	{% if messages %}
+		{% for message in messages %}
+			<script>
+				alert('{{message}}');
+			</script>
+		{% endfor %}
+	{% endif %}
+
+
+
+
+
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 	<!--
 			CSS
@@ -124,14 +136,13 @@
 							output.
 						</p>
 						<div>
-							<form
-								action="{% url 'website:newsletter' %}"
-								method="post" class="subscription relative">
+							<form action="{% url 'website:newsletter' %}" method="post" class="subscription relative">
 								{% csrf_token %}
 								<div class="input-group d-flex flex-row">
 									<input name="email" placeholder="Email Address" onfocus="this.placeholder = ''"
 										onblur="this.placeholder = 'Email Address '" required="" type="email">
-									<button type="submit" class="btn bb-btn"><span class="lnr lnr-location"></span></button>
+									<button type="submit" class="btn bb-btn"><span
+											class="lnr lnr-location"></span></button>
 								</div>
 								<div class="mt-10 info"></div>
 							</form>

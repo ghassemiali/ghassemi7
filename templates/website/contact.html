@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			<div class="col-lg-8">
-				<form class="form-area contact-form text-right" action="{% url 'website:contact' %}" method="post">
+				<form class="form-area contact-form text-right" action="{% url 'website:contact' %}" method="post" novalidate>
 					{% csrf_token %}
 					<div class="row">
 						<div class="col-lg-6 form-group">
@@ -86,13 +86,6 @@
 					</div>
 				</form>
 			</div>
-
-			{% if messages %}
-			{% for message in messages %}
-			<div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
-			{% endfor %}
-			{% endif %}
-
 		</div>
 	</div>
 </section>
