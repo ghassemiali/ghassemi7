@@ -3,6 +3,8 @@ from blog.models import Post, Tag
 from website.models import Contact
 from website.forms import NameForm, ContactForm, NewsletterForm
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
+
 
 def home_view(request):
     return render(request, 'website/index.html')
@@ -15,8 +17,10 @@ def contact_view(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.SUCCESS, "your ticket submittet successfully")
         else:
             print('the data is not valid')
+            messages.add_message(request, messages.ERROR, "your ticket didn't submitted")
     form = ContactForm()
     return render(request, 'website/contact.html', {'form': form})
 
