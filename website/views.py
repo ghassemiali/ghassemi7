@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from blog.models import Post, Tag
 from website.models import Contact
-from website.forms import NameForm, ContactForm
-from django.http import HttpResponse
+from website.forms import NameForm, ContactForm, NewsletterForm
+from django.http import HttpResponse, HttpResponseRedirect
 
 def home_view(request):
     return render(request, 'website/index.html')
@@ -19,6 +19,15 @@ def contact_view(request):
             print('the data is not valid')
     form = ContactForm()
     return render(request, 'website/contact.html', {'form': form})
+
+def newsletter_view(request):
+    if request.method == 'POST':
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            form.save()
+        else:
+            print('not valid')
+    return HttpResponseRedirect('/')
 
 def elements_view(request):
     return render(request, 'website/elements.html')
